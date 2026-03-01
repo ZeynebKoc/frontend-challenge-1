@@ -1,0 +1,49 @@
+/* ---- FONTS ---- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@import "tailwindcss";
+
+/* ---- CSS VARIABLES ---- */
+:root {
+  /* Font */
+  --font-sans: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Spacing */
+  --radius: 6px;
+}
+
+/* ---- LIGHT MODE ---- */
+:root, .light {
+  --color-bg: #ffffff;
+  --color-surface: #f9fafb;
+  --color-border: #e5e7eb;
+  --color-text: #111827;
+  --color-text-muted: #6b7280;
+  --color-accent: #059669;
+}
+
+/* ---- DARK MODE ---- */
+.dark {
+  --color-bg: #0a0f0d;
+  --color-surface: #111812;
+  --color-border: #1f2e25;
+  --color-text: #e2f5ec;
+  --color-text-muted: #4b7a5e;
+  --color-accent: #34d399;
+}
+
+/* ---- BASE ---- */
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+code, .font-mono {
+  font-family: var(--font-mono);
+}
+
+* {
+  box-sizing: border-box;
+}
