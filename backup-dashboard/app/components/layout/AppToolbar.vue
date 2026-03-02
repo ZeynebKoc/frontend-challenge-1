@@ -3,6 +3,7 @@ import { useChunksStore } from '~/stores/chunks'
 const { totalChunks } = useChunkStats()
 
 const store = useChunksStore()
+const openDownload = inject<() => Promise<void>>('openDownload')
 
 // True when every bucket is selected
 const isAllSelected = computed(() => {
@@ -34,6 +35,7 @@ const isAllSelected = computed(() => {
           dark:border-emerald-500 dark:text-emerald-400 dark:bg-emerald-950
           disabled:opacity-40 disabled:cursor-not-allowed
           hover:bg-emerald-100 dark:hover:bg-emerald-900"
+        @click="openDownload?.()"
       >
         <UIcon name="i-heroicons-arrow-down-tray" class="w-3.5 h-3.5" />
         Download ({{ store.selectedCount }})
