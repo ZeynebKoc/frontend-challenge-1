@@ -4,5 +4,6 @@ definePageMeta({ layout: 'default' })
 
 <template>
   <NuxtLayout name="default">
+    <ChunkGrid />
   </NuxtLayout>
 </template>
