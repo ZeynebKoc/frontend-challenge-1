@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <NuxtRouteAnnouncer />
-    <NuxtWelcome />
-     <UColorModeButton />
-  </div>
+  <UApp>
+    <NuxtPage />
+  </UApp>
 </template>
