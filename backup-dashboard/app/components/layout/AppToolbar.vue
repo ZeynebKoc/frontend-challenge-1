@@ -4,6 +4,7 @@ const { totalChunks } = useChunkStats()
 
 const store = useChunksStore()
 const openDownload = inject<() => Promise<void>>('openDownload')
+const openDelete = inject<() => void>('openDelete')
 
 // True when every bucket is selected
 const isAllSelected = computed(() => {
@@ -48,6 +49,7 @@ const isAllSelected = computed(() => {
           dark:border-red-500 dark:text-red-400 dark:bg-red-950
           disabled:opacity-40 disabled:cursor-not-allowed
           hover:bg-red-100 dark:hover:bg-red-900"
+        @click="openDelete?.()"
       >
         <UIcon name="i-heroicons-trash" class="w-3.5 h-3.5" />
         Delete ({{ store.selectedCount }})

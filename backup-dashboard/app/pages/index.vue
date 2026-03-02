@@ -5,6 +5,7 @@ import type { DownloadFile } from '~/types'
 definePageMeta({ layout: 'default' })
 
 const isDownloadOpen = ref(false)
+const isDeleteOpen = ref(false)
 const downloadFiles = ref<DownloadFile[]>([])
 const store = useChunksStore()
 
@@ -14,12 +15,18 @@ const handleDownload = async () => {
   isDownloadOpen.value = true
 }
 
+const handleDelete = () => {
+  isDeleteOpen.value = true
+}
+
 provide('openDownload', handleDownload)
+provide('openDelete', handleDelete)
 </script>
 
 <template>
   <NuxtLayout name="default">
     <ChunkGrid />
     <DownloadModal v-model:open="isDownloadOpen" :files="downloadFiles" />
+    <DeleteModal v-model:open="isDeleteOpen" />
   </NuxtLayout>
 </template>
