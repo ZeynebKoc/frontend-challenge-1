@@ -5,7 +5,7 @@ export function useTotalChunks() {
   const store = useChunksStore()
 
   const totalChunks = computed(() => {
-    const n = store.data?.dataChunkCount ?? 0
+    const n = store.data?.dataChunkCount ?? '-'
     return n.toLocaleString()
   })
 
