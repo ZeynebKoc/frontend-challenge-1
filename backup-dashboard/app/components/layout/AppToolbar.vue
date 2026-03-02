@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { useChunksStore } from '~/stores/chunks'
-import { useTotalChunks } from '~/composables/useTotalChunks'
+const { totalChunks } = useChunkStats()
 
-const { totalChunks } = useTotalChunks()
 const store = useChunksStore()
 
 // True when every bucket is selected

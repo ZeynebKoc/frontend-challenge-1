@@ -1,32 +1,6 @@
 <script setup lang="ts">
-import { useChunksStore } from '~/stores/chunks'
-
-const store = useChunksStore()
 const { colorLevels } = useColorMap()
-
-import { useTotalChunks } from '~/composables/useTotalChunks'
-const { totalChunks } = useTotalChunks()
-
-const totalRecords = computed(() => {
-  if (!store.data) return '-'
-  const n = store.data.dataCount
-  if (n >= 1_000_000) return (n / 1_000_000).toFixed(1) + 'M'
-  if (n >= 1_000) return (n / 1_000).toFixed(1) + 'K'
-  return n.toString()
-})
-
-const sizeOnDisk = computed(() => {
-  if (!store.data) return '-'
-  const bytes = store.data.sizeOnDisk
-  if (bytes >= 1_048_576) return (bytes / 1_048_576).toFixed(0) + ' MB'
-  if (bytes >= 1_024) return (bytes / 1_024).toFixed(0) + ' KB'
-  return bytes + ' B'
-})
-
-const avgCompression = computed(() => {
-  if (!store.data) return '-'
-  return store.data.compressionRatio.toFixed(2) + '%'
-})
+const { totalRecords, totalChunks, sizeOnDisk, avgCompression } = useChunkStats()
 </script>
 
 <template>
