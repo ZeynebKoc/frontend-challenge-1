@@ -5,7 +5,7 @@ import AppFooter from '~/components/layout/AppFooter.vue'
 </script>
 
 <template>
-  <div class="min-h-screen flex flex-col bg-mist-300 dark:bg-zinc-950">
+  <div class="min-h-screen flex flex-col bg-mist-300 dark:bg-zinc-950/50">
     <div class="sticky top-0 z-40">
       <AppHeader />
       <AppToolbar />
