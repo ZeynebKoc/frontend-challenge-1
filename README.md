@@ -19,8 +19,8 @@ Built as part of a frontend technical assessment.
 
 ## Preview
 
-![Dark Mode](docs/dark-mode.png)
-![Light Mode](docs/light-mode.png)
+![Dark Mode](backup-dashboard/docs/dark-mode.png)
+![Light Mode](backup-dashboard/docs/light-mode.png)
 
 ---
 
