@@ -29,7 +29,7 @@ const isHourIndeterminate = computed(() => {
 </script>
 
 <template>
-  <div class="flex items-center gap-3 py-[1px] px-6 hover:bg-white dark:hover:bg-zinc-950 transition-colors">
+<div class="flex items-center gap-3 py-[1px] pl-6 pr-6 hover:bg-white dark:hover:bg-zinc-950 transition-colors">
 
     <!-- Row selection checkbox -->
     <div class="inline-flex items-center justify-center px-0.25 rounded border border-gray-600 dark:border-gray-600">
@@ -59,7 +59,7 @@ const isHourIndeterminate = computed(() => {
     </div>
 
     <!-- Hour statistics: records, size, compression -->
-    <div class="flex items-center gap-3 shrink-0 ml-2">
+    <div class="flex items-center gap-3 shrink-0">
       <span class="text-[10px] font-mono text-gray-900 dark:text-gray-200 w-10 text-right">
         {{ formatCount(group.dataCount) }}
       </span>

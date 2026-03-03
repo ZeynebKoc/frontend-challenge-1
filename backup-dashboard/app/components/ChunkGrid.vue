@@ -9,7 +9,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="overflow-x-auto">
+  <div>
 
     <!-- Loading -->
     <div v-if="store.isLoading" class="flex flex-col items-center justify-center gap-3 py-20">
@@ -30,7 +30,8 @@ onMounted(async () => {
     </div>
 
     <!-- Grid -->
-    <div v-else-if="store.data" class="w-max py-2">
+    <div v-else-if="store.data" class="overflow-x-auto py-2">
+      <div class="min-w-max">
       <HourRow
         v-for="group in store.data.groups"
         :key="`${group.date.day}-${group.date.hour}`"
@@ -41,12 +42,13 @@ onMounted(async () => {
         @toggle-cell="store.toggleChunkSelection"
         @toggle-hour="store.toggleHourSelection"
       />
+       </div>
     </div>
 
     <!-- Empty state -->
     <div v-else class="flex flex-col items-center justify-center gap-3 py-20">
-      <UIcon name="i-heroicons-inbox" class="w-8 h-8 text-gray-300 dark:text-gray-600" />
-      <span class="text-sm text-gray-400 dark:text-gray-500">No chunk data available</span>
+      <UIcon name="i-heroicons-inbox" class="w-8 h-8 text-gray-00 dark:text-gray-600" />
+      <span class="text-sm text-gray-700 dark:text-gray-500">No chunk data available</span>
     </div>
 
   </div>

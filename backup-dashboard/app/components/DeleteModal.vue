@@ -40,15 +40,15 @@ const handleDelete = async () => {
 <template>
   <UModal :open="open" @update:open="emit('update:open', $event)">
     <template #content>
-      <div class="flex flex-col gap-4 p-6 bg-white dark:bg-gray-900 rounded-lg min-w-[480px]">
+      <div class="flex flex-col gap-4 p-6 bg-white border border-gray-400 dark:border-gray-900 dark:bg-gray-900 rounded-lg min-w-[480px]">
 
         <!-- Success state -->
         <div v-if="deleteResult" class="flex flex-col gap-4">
           <div class="flex items-center gap-2">
             <UIcon name="i-heroicons-check-circle" class="w-5 h-5 text-emerald-500" />
-            <h3 class="text-sm font-semibold text-gray-900 dark:text-white">Operation Complete</h3>
+            <h3 class="text-sm font-semibold text-black dark:text-white">Operation Complete</h3>
           </div>
-          <p class="text-sm text-gray-500 dark:text-gray-400">{{ deleteResult }}</p>
+          <p class="text-sm text-emerald-500">{{ deleteResult }}</p>
           <div class="flex justify-end">
             <UButton size="sm" color="neutral" variant="soft" @click="close">Close</UButton>
           </div>
@@ -61,7 +61,7 @@ const handleDelete = async () => {
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-2">
               <UIcon name="i-heroicons-exclamation-triangle" class="w-5 h-5 text-red-500" />
-              <h3 class="text-sm font-semibold text-gray-900 dark:text-white">Confirm Delete</h3>
+              <h3 class="text-sm font-semibold text-black dark:text-white">Confirm Delete</h3>
             </div>
             <UButton variant="ghost" color="neutral" size="xs" icon="i-heroicons-x-mark" @click="close" />
           </div>
@@ -76,37 +76,37 @@ const handleDelete = async () => {
 
           <!-- Summary section -->
           <div class="grid grid-cols-3 gap-2">
-            <div class="flex flex-col gap-0.5 px-3 py-2 rounded border border-gray-200 dark:border-gray-700 text-center">
-              <span class="text-base font-semibold text-gray-900 dark:text-white">{{ store.selectedCount }}</span>
-              <span class="text-[10px] uppercase tracking-wide text-gray-400 dark:text-gray-500">Chunks</span>
+            <div class="flex flex-col gap-0.5 px-3 py-2 rounded border border-gray-400 dark:border-gray-700 text-center">
+              <span class="text-base font-semibold text-black dark:text-white">{{ store.selectedCount }}</span>
+              <span class="text-[10px] uppercase tracking-wide text-gray-700 dark:text-gray-500">Chunks</span>
             </div>
-            <div class="flex flex-col gap-0.5 px-3 py-2 rounded border border-gray-200 dark:border-gray-700 text-center">
-              <span class="text-base font-semibold text-gray-900 dark:text-white">{{ formatSize(store.totalSelected.size) }}</span>
-              <span class="text-[10px] uppercase tracking-wide text-gray-400 dark:text-gray-500">Total Size</span>
+            <div class="flex flex-col gap-0.5 px-3 py-2 rounded border border-gray-400 dark:border-gray-700 text-center">
+              <span class="text-base font-semibold text-black dark:text-white">{{ formatSize(store.totalSelected.size) }}</span>
+              <span class="text-[10px] uppercase tracking-wide text-gray-700 dark:text-gray-500">Total Size</span>
             </div>
-            <div class="flex flex-col gap-0.5 px-3 py-2 rounded border border-gray-200 dark:border-gray-700 text-center">
-              <span class="text-base font-semibold text-gray-900 dark:text-white">{{ formatCount(store.totalSelected.records) }}</span>
-              <span class="text-[10px] uppercase tracking-wide text-gray-400 dark:text-gray-500">Records</span>
+            <div class="flex flex-col gap-0.5 px-3 py-2 rounded border border-gray-400 dark:border-gray-700 text-center">
+              <span class="text-base font-semibold text-black dark:text-white">{{ formatCount(store.totalSelected.records) }}</span>
+              <span class="text-[10px] uppercase tracking-wide text-gray-700 dark:text-gray-500">Records</span>
             </div>
           </div>
 
           <!-- Selected chunk list -->
-          <div class="border border-gray-200 dark:border-gray-700 rounded overflow-hidden max-h-40 overflow-y-auto">
+          <div class="border border-gray-400 dark:border-gray-700 rounded overflow-hidden max-h-40 overflow-y-auto">
             <div
               v-for="date in store.selectedChunks"
               :key="`${date.hour}-${date.minute}`"
-              class="flex items-center justify-between px-3 py-1.5 border-b border-gray-100 dark:border-gray-800 last:border-0 hover:bg-gray-50 dark:hover:bg-gray-800"
+              class="flex items-center justify-between px-3 py-1.5 border-b border-gray-300 dark:border-gray-700 last:border-0 hover:bg-gray-50 dark:hover:bg-gray-800"
             >
-              <span class="text-[11px] font-mono text-gray-600 dark:text-gray-400">
+              <span class="text-[11px] font-mono text-gray-700 dark:text-gray-500">
                 chunk_{{ date.year }}_{{ String(date.month).padStart(2,'0') }}_{{ String(date.day).padStart(2,'0') }}_{{ String(date.hour).padStart(2,'0') }}_{{ String(date.minute).padStart(2,'0') }}.dat
               </span>
             </div>
           </div>
 
           <!-- Confirmation checkbox -->
-          <label class="flex items-start gap-2 cursor-pointer px-3 py-2 rounded border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800">
+          <label class="flex items-start gap-2 cursor-pointer px-3 py-2 rounded border border-gray-400 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800">
             <UCheckbox v-model="isConfirmed" class="mt-0.5" />
-            <span class="text-xs text-gray-600 dark:text-gray-400">
+            <span class="text-xs text-gray-700 dark:text-gray-500">
               I understand this action cannot be undone and all selected chunks will be permanently deleted.
             </span>
           </label>

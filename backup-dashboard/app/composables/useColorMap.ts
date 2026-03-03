@@ -2,14 +2,14 @@ export function useColorMap() {
   // index 0 = no data, 1-8 = low to high density
   const colorLevels: string[] = [
     'transparent',
-    '#064e3b',
-    '#065f46',
-    '#047857',
-    '#059669',
-    '#10b981',
-    '#34d399',
-    '#6ee7b7',
-    '#a7f3d0',
+    '#eafaea',
+    '#c6f6c8',
+    '#9be99f',
+    '#6be573',
+    '#39d353',
+    '#26a641',
+    '#006d32',
+    '#0e4429',
   ]
 
   function getColorLevel(

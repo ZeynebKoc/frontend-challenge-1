@@ -12,38 +12,38 @@ const { totalRecords, totalChunks, sizeOnDisk, avgCompression } = useChunkStats(
       <!-- Total Records -->
       <div class="flex flex-col gap-0.5 px-4 py-1">
         <span class="text-base font-semibold text-gray-900 dark:text-white">{{ totalRecords }}</span>
-        <span class="text-[10px] uppercase tracking-wider text-gray-400 dark:text-gray-500">Total Records</span>
+        <span class="text-[10px] uppercase tracking-wider text-gray-500 dark:text-gray-500">Total Records</span>
       </div>
 
-      <div class="w-px h-8 bg-gray-200 dark:bg-gray-700 hidden sm:block" />
+      <div class="w-px h-8 bg-gray-500 dark:bg-gray-700 hidden sm:block" />
 
       <!-- Total Chunks -->
       <div class="flex flex-col gap-0.5 px-4 py-1">
         <span class="text-base font-semibold text-gray-900 dark:text-white">{{ totalChunks }}</span>
-        <span class="text-[10px] uppercase tracking-wider text-gray-400 dark:text-gray-500">Total Chunks</span>
+        <span class="text-[10px] uppercase tracking-wider text-gray-500 dark:text-gray-500">Total Chunks</span>
       </div>
 
-      <div class="w-px h-8 bg-gray-200 dark:bg-gray-700 hidden sm:block" />
+      <div class="w-px h-8 bg-gray-500 dark:bg-gray-700 hidden sm:block" />
 
       <!-- Size on Disk -->
       <div class="flex flex-col gap-0.5 px-4 py-1">
         <span class="text-base font-semibold text-gray-900 dark:text-white">{{ sizeOnDisk }}</span>
-        <span class="text-[10px] uppercase tracking-wider text-gray-400 dark:text-gray-500">Size on Disk</span>
+        <span class="text-[10px] uppercase tracking-wider text-gray-500 dark:text-gray-500">Size on Disk</span>
       </div>
 
-      <div class="w-px h-8 bg-gray-200 dark:bg-gray-700 hidden sm:block" />
+      <div class="w-px h-8 bg-gray-500 dark:bg-gray-700 hidden sm:block" />
 
       <!-- Avg Compression -->
       <div class="flex flex-col gap-0.5 px-4 py-1">
         <span class="text-base font-semibold text-gray-900 dark:text-white">{{ avgCompression }}</span>
-        <span class="text-[10px] uppercase tracking-wider text-gray-400 dark:text-gray-500">Avg Compression</span>
+        <span class="text-[10px] uppercase tracking-wider text-gray-500 dark:text-gray-500">Avg Compression</span>
       </div>
 
     </div>
 
     <!-- Color scale -->
     <div class="flex items-center gap-2 px-4 sm:px-0">
-      <span class="text-[10px] text-gray-400 dark:text-gray-500">Less</span>
+      <span class="text-[10px] text-gray-600 dark:text-gray-400">Less</span>
       <div class="flex gap-[2px]">
         <div
           v-for="(color, index) in colorLevels"
@@ -52,7 +52,7 @@ const { totalRecords, totalChunks, sizeOnDisk, avgCompression } = useChunkStats(
           :style="{ backgroundColor: color === 'transparent' ? 'transparent' : color }"
         />
       </div>
-      <span class="text-[10px] text-gray-400 dark:text-gray-500">More</span>
+      <span class="text-[10px] text-gray-600 dark:text-gray-400">More</span>
     </div>
 
   </footer>
