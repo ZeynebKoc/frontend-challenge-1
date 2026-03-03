@@ -43,5 +43,11 @@ onMounted(async () => {
       />
     </div>
 
+    <!-- Empty state -->
+    <div v-else class="flex flex-col items-center justify-center gap-3 py-20">
+      <UIcon name="i-heroicons-inbox" class="w-8 h-8 text-gray-300 dark:text-gray-600" />
+      <span class="text-sm text-gray-400 dark:text-gray-500">No chunk data available</span>
+    </div>
+
   </div>
 </template>

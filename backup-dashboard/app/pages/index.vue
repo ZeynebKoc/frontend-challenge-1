@@ -9,14 +9,16 @@ const isDeleteOpen = ref(false)
 const downloadFiles = ref<DownloadFile[]>([])
 const store = useChunksStore()
 
-// Listen for events from the toolbar
 const handleDownload = async () => {
   downloadFiles.value = await store.fetchDownloadUrls()
   isDownloadOpen.value = true
 }
 
-const handleDelete = () => {
+// Returns a promise that resolves when modal closes
+const handleDelete = async () => {
   isDeleteOpen.value = true
+  // Promise resolves immediately after modal opens
+  return Promise.resolve()
 }
 
 provide('openDownload', handleDownload)
