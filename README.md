@@ -1,157 +1,148 @@
-# Frontend Challenge — Level 1
+# DataGuard Backup Integrity Monitor
 
-## Overview
+A single-page dashboard for visualizing and managing 1,440 daily backup chunks across a 24-hour window.
 
-Build a **Backup Data Integrity** dashboard that visualizes time-series backup data chunks in an interactive heatmap grid. Users can view chunk density, select chunks, and perform download and delete operations.
-
-## The Story
-
-A network security appliance (firewall) continuously collects traffic logs. These logs are generated in real time — hundreds, sometimes thousands of records per second. Storing all of this data in a single large file would be problematic for both performance and manageability: the file grows indefinitely, downloading it takes hours, and a single corruption could compromise all the data.
-
-That's why the data is **split into minute-based chunks**. Each chunk stores all records from that minute as a compressed package. This approach provides:
-
-- **Granular management:** Download, delete, or verify only the time range you need
-- **Damage isolation:** If one chunk is corrupted, only 1 minute of data is affected — the rest remains intact
-- **Parallel processing:** Multiple chunks can be downloaded or verified simultaneously
-- **Efficient storage:** Each chunk is independently compressed
-
-This produces **1,440 chunks per day** (24 hours x 60 minutes). As a security administrator, you need to monitor the integrity of these chunks: Which hours had heavy traffic? Are there any gaps? Do you need to download or delete specific chunks?
-
-Your task is to build a dashboard that displays the entire day's chunks as a **calendar-style heatmap** — similar in concept to [GitHub's contribution graph](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/managing-contribution-settings-on-your-profile/viewing-contributions-on-your-profile), but organized by hours and minutes instead of months and days. Since each chunk maps to a specific minute within a specific hour, the data naturally lends itself to a **time-grid visualization** — think of how a calendar shows days within months, but here you're showing minutes within hours. This time-based structure is key to making the data intuitive at a glance.
-
-Darker cells represent high-traffic periods, lighter cells represent low traffic, and empty cells indicate minutes with no data. The administrator can select chunks and perform bulk operations: download or delete.
-
-**The UI design is entirely up to you.** Use Nuxt UI components creatively to build a clean, functional interface. We want to see your design thinking, not a copy of an existing layout.
-
-## Tech Stack (Required)
-
-| Technology | Version |
-|-----------|---------|
-| **Nuxt** | 4 (latest, v4.3+) |
-| **Nuxt UI** | 4 (latest, v4.4+) |
-| **Pinia** | 3 (latest, v3.0+) |
-| **TypeScript** | Required |
-
-## What You Need to Build
-
-A single-page application with the following features:
-
-### 1. Chunk Visualization Grid
-
-Display backup data chunks as a color-coded heatmap grid, organized by hourly time groups.
-
-- **24 rows** — one per hour (0:00 through 23:00)
-- **60 cells per row** — one per minute within that hour
-- Cell background color reflects **data density** (darker = more data, lighter = less)
-- Empty cells (no data) appear very faint or transparent
-
-Each hourly group shows:
-- Time label (e.g., "0:00", "1:00")
-- Inline statistics: record count, disk size, compression ratio
-- Group selection checkbox
-
-### 2. Color Mapping
-
-- Use a single green-tone color palette with **8 gradient levels**
-- Map each chunk's `dataCount` value to a color level using **linear scaling** between `minDataCount` and `maxDataCount`
-- Show a "Less → More" gradient scale in the footer
-
-### 3. Chunk Selection
-
-- **Click a cell** → toggle selection (show checkmark on selected cells)
-- **Group checkbox** → select/deselect all chunks in that hour
-- **Select All toggle** → select/deselect all visible chunks
-- Action buttons show selected count: `Download(3)`, `Delete(5)`
-- Buttons are disabled when no chunks are selected
-
-### 4. Download Operation
-
-- Click "Download" button with chunks selected
-- Call the download-urls API endpoint
-- Display results in a modal: file name, size, and download link for each file
-
-### 5. Delete Operation
-
-- Click "Delete" button with chunks selected
-- Show confirmation modal with:
-  - Warning message: "This action is irreversible"
-  - Summary: chunk count, total size, record count
-  - File list with details
-  - Confirmation checkbox: "I understand this action cannot be undone"
-  - Delete button (disabled until checkbox is checked)
-- Call the delete API endpoint
-- Show result (success/failure)
-
-### 6. Footer Statistics
-
-Display at the bottom of the page:
-- Total Records (e.g., "1.2M")
-- Total Chunks (e.g., "1,440")
-- Size On Disk (e.g., "167.54 MB")
-- Color scale indicator (Less → More)
-
-## API Contracts
-
-See [docs/api-contracts.md](docs/api-contracts.md) for full endpoint documentation.
-
-**Summary of endpoints you need to implement as Nuxt server routes:**
-
-| Method | Path | Description |
-|--------|------|-------------|
-| GET | `/api/chunks` | Get all chunk data for the day |
-| POST | `/api/chunks/download-urls` | Get download URLs for selected chunks |
-| DELETE | `/api/chunks` | Delete selected chunks |
-
-Your server routes should serve the mock data from the `mock-data/` directory.
-
-## Data Models
-
-See [docs/data-models.md](docs/data-models.md) for TypeScript interface definitions.
-
-## Mock Data
-
-The `mock-data/` directory contains realistic sample data:
-
-| File | Description |
-|------|-------------|
-| `signedfiles.json` | Full day of chunk data (24 groups, 1440 chunks) |
-| `download-urls.json` | Sample download URL response |
-| `delete-result.json` | Sample delete result response |
-
-You can regenerate mock data by running:
-```bash
-node generate-mock-data.mjs
-```
-
-## Rules
-
-1. **Start from scratch** — Fork this repo, create a new Nuxt project inside it
-2. **No UI copy** — You will NOT see the original application. Build your own design using Nuxt UI
-3. **Mock API required** — Implement Nuxt server routes (`server/api/`) that serve the mock data
-4. **TypeScript required** — All code must be TypeScript
-5. **Git history matters** — Make meaningful commits showing your progress
-6. **README** — Add a brief explanation of your architectural decisions
-
-## Evaluation Criteria
-
-| Criteria | Weight | What We Look For |
-|----------|--------|------------------|
-| **Code Quality** | 30% | Clean components, TypeScript usage, Composition API patterns |
-| **Functionality** | 30% | All features working correctly, edge cases handled |
-| **UI/UX** | 20% | Responsive grid, clear visual feedback, good interactions |
-| **Architecture** | 20% | Component structure, state management, API layer separation |
-
-## Submission
-
-1. Fork this repository
-2. Create your Nuxt project and implement the features
-3. Push your work to your fork
-4. Share your fork URL with us
-
-## Time Expectation
-
-This challenge is designed to take approximately **3-4 days** (working 4-6 hours per day).
+Built as part of a frontend technical assessment.
 
 ---
 
-Good luck!
+## Tech Stack
+
+- **Nuxt 4** — App directory structure, file-based routing
+- **Nuxt UI 4** — Component library with dark/light mode support
+- **Pinia 3** — State management
+- **TypeScript** — Type safety across components, store, and API routes
+- **Tailwind CSS v4** — Utility-first styling
+- **Vitest** — Unit testing
+
+---
+
+## Preview
+
+![Dark Mode](docs/dark-mode.png)
+![Light Mode](docs/light-mode.png)
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js 20+
+- npm
+
+### Installation
+```bash
+# Clone the repository
+git clone <repo-url>
+cd frontend-challenge-1
+
+# Generate mock data
+node generate-mock-data.mjs
+
+# Install dependencies
+cd backup-dashboard
+npm install
+
+# Start development server
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000)
+
+### Run Tests
+```bash
+npm run test
+```
+
+### Tests
+Unit tests are written with Vitest and cover the core composables.
+
+**useColorMap**
+
+| Test Description | Input / Condition | Expected Result  |
+| ---------------- | ----------------- | ---------------- |
+| Zero dataCount   | 0                 | Level 0          |
+| Min equals max   | min = max         | Middle level (4) |
+| Minimum value    | min value         | Level 0          |
+| Maximum value    | max value         | Level 8          |
+
+
+**useFormatters**
+
+| Test Description | Input / Condition | Expected Result |
+| ---------------- | ----------------- | --------------- |
+| Bytes            | 500               | 500 B           |
+| Kilobytes        | 2048              | 2 KB            |
+| Megabytes        | 1,048,576         | 1.00 MB         |
+| Small count      | 500               | "500"           |
+| Thousands        | 1,500             | "1.5K"          |
+| Millions         | 2,000,000         | "2.0M"          |
+
+---
+
+## Project Structure
+```
+backup-dashboard/
+├── app/
+│   ├── assets/css/
+│   ├── components/
+│   │   ├── layout/
+│   │   │   ├── AppHeader.vue     # Top navigation with dark/light toggle
+│   │   │   ├── AppToolbar.vue    # Selection controls and action buttons
+│   │   │   └── AppFooter.vue     # Statistics and color scale legend
+│   │   ├── ChunkGrid.vue         # 24-hour heatmap grid
+│   │   ├── ChunkCell.vue         # Single minute chunk cell with tooltip
+│   │   ├── DeleteModal.vue
+│   │   └── DownloadModal.vue
+│   ├── composables/
+│   │   ├── useColorMap.ts        # Maps dataCount to color levels
+│   │   ├── useFormatters.ts      # Size and count formatting utilities
+│   │   └── useChunkStats.ts      # Aggregated statistics from store
+│   ├── layouts/
+│   │   └── default.vue
+│   ├── pages/
+│   │   └── index.vue
+│   ├── stores/
+│   │   └── chunks.ts             # Pinia store for chunk data and selection
+│   ├── tests/
+│   │   ├── useColorMap.test.ts
+│   │   └── useFormatters.test.ts
+│   ├── types/
+│   │   └── index.ts              # TypeScript interfaces and enums
+│   └── app.vue
+├── docs/
+│   ├── dark-mode.png
+│   └── light-mode.png
+├── server/
+│   └── api/
+└── mock-data/                    # Generated JSON data files
+```
+
+---
+
+## Architecture Decisions
+
+**Component hierarchy** — Grid is broken into `ChunkGrid → HourRow → ChunkCell` for clear separation of concerns. Each component handles its own level of data.
+
+**Pinia store** — All selection state lives in the store. Components emit events upward, store manages state. This keeps components stateless and testable.
+
+**Composables** — Formatting logic (`useFormatters`) and statistics (`useChunkStats`) are extracted into composables to avoid duplication across components.
+
+**Mock API** — Server routes in `server/api/` simulate real endpoints. Data is read from `mock-data/` JSON files. No actual deletion occurs.
+
+**Color mapping** — `useColorMap` uses linear scaling between `minDataCount` and `maxDataCount` from the API response to assign one of 8 color levels to each chunk.
+
+---
+
+## Features
+
+- Heatmap visualization of 1,440 backup chunks (24h × 60min)
+- Click individual chunks or use row checkboxes to select
+- Select all / deselect all
+- Download modal with signed URLs for selected chunks
+- Delete modal with confirmation flow
+- Footer statistics: total records, chunks, disk size, compression ratio
+- Color scale legend
+- Dark / light mode toggle
+- Responsive layout with horizontal scroll on small screens
