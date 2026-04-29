@@ -4,6 +4,8 @@ A single-page dashboard for visualizing and managing 1,440 daily backup chunks a
 
 Built as part of a frontend technical assessment.
 
+🔗 **[Live Demo → backup-dashboard-zeta.vercel.app](https://backup-dashboard-zeta.vercel.app/)**
+
 ---
 
 ## Tech Stack
